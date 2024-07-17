@@ -35,8 +35,8 @@ const FollowUp: React.FC<FollowUpProps> = ({ content, sendMessage }) => {
   return (
     <div className="my-4 w-full">
       {followUp.length > 0 && (
-        <div className="text-3xl font-bold flex items-center mb-4">
-          <Layers className="w-8 h-8" />
+        <div className="text-3xl md:text-4xl font-bold flex items-center mb-4">
+          <Layers className="w-7 h-7 md:w-8 md:h-8" />
           <span className="px-2">Follow-Up</span>
         </div>
       )}
@@ -49,7 +49,7 @@ const FollowUp: React.FC<FollowUpProps> = ({ content, sendMessage }) => {
             <a href="#" key={index} className="text-xl w-full p-1" onClick={(e) => handleFollowUpClick(text, e)}>
               <span>{text}</span>
             </a>
-            <Plus size={20} className="" />
+            <Plus size={20} className="ml-4" />
           </div>
         ))}
       </div>

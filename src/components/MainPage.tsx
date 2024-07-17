@@ -91,7 +91,7 @@ const MainPage: React.FC = () => {
       <div className="sticky bottom-0">
         <InputArea inputValue={inputValue} setInputValue={setInputValue} sendMessage={sendMessage} />
       </div>
-      <div className="absolute top-4 left-4">
+      <div className="absolute top-0 right-0">
       <Themetoggle/>
       </div>
     </div>
