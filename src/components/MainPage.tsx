@@ -4,6 +4,8 @@ import { ArrowCircleRight } from "@phosphor-icons/react";
 import InputArea from "./InputArea";
 import MessageHandler from "./MessageHandler";
 import { supabase } from "../lib/supa";
+import { Themetoggle } from "./ui/Themetoggle";
+import { useTheme } from "next-themes";
 
 const MainPage: React.FC = () => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -65,6 +67,12 @@ const MainPage: React.FC = () => {
       console.error('Error sending message:', error);
     }
   };
+
+  const { theme, setTheme } = useTheme();
+  const mode = theme === "dark";
+  const toggleTheme = () => {
+    setTheme(mode ? "light" : "dark");
+  };
   
 
   return (
@@ -83,6 +91,9 @@ const MainPage: React.FC = () => {
       </div>
       <div className="sticky bottom-0">
         <InputArea inputValue={inputValue} setInputValue={setInputValue} sendMessage={sendMessage} />
+      </div>
+      <div className="absolute bottom-8 left-8">
+      <Themetoggle/>
       </div>
   </div>
   );
