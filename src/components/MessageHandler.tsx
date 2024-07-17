@@ -1,4 +1,5 @@
 import React, { memo } from "react";
+import Content from "./Content";  // Import the new Content component
 import Query from "./Query";
 import Sources from "./Sources";
 import VectorCreation from "./VectorCreation";
@@ -7,7 +8,7 @@ import GPT from "./GPT";
 import FollowUp from "./FollowUp";
 
 interface MessageHandlerProps {
-  message: { payload: { type: string; content: string } };
+  message: { payload: { type?: string; content: string } };
   sendMessage: (messageToSend?: string) => void;
 }
 
@@ -15,6 +16,7 @@ const MessageHandler: React.FC<MessageHandlerProps> = memo(({ message, sendMessa
   const { type, content } = message.payload;
 
   const COMPONENT_MAP: Record<string, React.FC<any>> = {
+    Content,  // Add Content to the component map
     Query,
     Sources,
     VectorCreation,
@@ -23,7 +25,7 @@ const MessageHandler: React.FC<MessageHandlerProps> = memo(({ message, sendMessa
     FollowUp,
   };
 
-  const Component = COMPONENT_MAP[type];
+  const Component = type ? COMPONENT_MAP[type] : COMPONENT_MAP['Content'];
   return Component ? <Component content={content} sendMessage={sendMessage} /> : null;
 });
 
