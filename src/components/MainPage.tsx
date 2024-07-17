@@ -76,7 +76,7 @@ const MainPage: React.FC = () => {
 
   return (
     <div className="flex flex-col gap-8 h-screen max-w-5xl mx-auto">
-      <div className="flex-grow overflow-auto p-4">
+      <div className="flex-grow overflow-auto p-4 scrollbar-thin">
         {messageHistory.length === 0 ? (
           <div className="w-full h-full flex justify-center items-center">
             <div className="text-3xl font-bold flex justify-center items-center md:text-5xl my-4 w-full text-center">Let's search</div>
@@ -94,7 +94,7 @@ const MainPage: React.FC = () => {
       <div className="absolute top-4 left-4">
       <Themetoggle/>
       </div>
-  </div>
+    </div>
   );
 };
 
