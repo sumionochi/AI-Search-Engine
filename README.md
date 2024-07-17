@@ -1,5 +1,9 @@
 # Real-Time AI-Powered Search Engine
 
+## Video Demo
+
+Watch the video demo [here](https://www.youtube.com/watch?v=k2W3Lf6Rohk).
+
 This project is a real-time AI search engine that uses modern web technologies like Next.js, Supabase, and Tiptap Editor. The application allows users to send queries and receive AI-generated responses in real-time. It features smooth content updates, source links, and follow-up suggestions, ensuring an interactive and engaging user experience.
 
 ## Features
@@ -126,7 +130,3 @@ This project is licensed under the MIT License.
 - [Tiptap Editor](https://tiptap.dev/)
 - [Next.js](https://nextjs.org/)
 - [React](https://reactjs.org/)
-
-## Video Demo
-
-Watch the video demo [here](https://www.youtube.com/watch?v=k2W3Lf6Rohk).
