@@ -7,11 +7,13 @@ import GPT from "./GPT";
 import FollowUp from "./FollowUp";
 
 interface MessageHandlerProps {
-  message: { type: string; content: string };
+  message: { payload: { type: string; content: string } };
   sendMessage: (messageToSend?: string) => void;
 }
 
 const MessageHandler: React.FC<MessageHandlerProps> = memo(({ message, sendMessage }) => {
+  const { type, content } = message.payload;
+
   const COMPONENT_MAP: Record<string, React.FC<any>> = {
     Query,
     Sources,
@@ -21,8 +23,8 @@ const MessageHandler: React.FC<MessageHandlerProps> = memo(({ message, sendMessa
     FollowUp,
   };
 
-  const Component = COMPONENT_MAP[message.type];
-  return Component ? <Component content={message.content} sendMessage={sendMessage} /> : null;
+  const Component = COMPONENT_MAP[type];
+  return Component ? <Component content={content} sendMessage={sendMessage} /> : null;
 });
 
 export default MessageHandler;

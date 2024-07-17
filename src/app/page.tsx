@@ -1,10 +1,11 @@
-import MainPage from "@/components/MainPage";
-import Image from "next/image";
+import dynamic from "next/dynamic";
 
-export default function Home() {
-  return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <MainPage/>
-    </main>
-  );
-}
+const Home = dynamic(() => import("../components/MainPage"), { ssr: false });
+
+const IndexPage: React.FC = () => {
+  return <div className="">
+          <Home/>
+        </div>;
+};
+
+export default IndexPage;
