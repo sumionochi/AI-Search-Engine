@@ -18,12 +18,19 @@ export const getGPTResults = async (inputString: string): Promise<void> => {
   });
 
   let rowId = await createRowForGPTResponse();
+  if (!rowId) {
+    throw new Error("Failed to create initial row for GPT response");
+  }
+
   sendPayload({ type: "Heading", content: "Answer" });
 
   for await (const part of stream) {
     if (part.choices[0]?.delta?.content) {
       accumulatedContent += part.choices[0]?.delta?.content;
       rowId = await updateRowWithGPTResponse(rowId, accumulatedContent);
+      if (!rowId) {
+        throw new Error("Failed to update row with GPT response");
+      }
     }
   }
 };
@@ -35,12 +42,24 @@ const createRowForGPTResponse = async (): Promise<string | null> => {
   const streamId = generateUniqueStreamId();
   const payload = { type: "GPT", content: "" };
   const { data, error } = await supabase.from("message_history").insert([{ payload }]).select("id");
+  if (error) {
+    console.error("Error creating row for GPT response:", error);
+    return null;
+  }
   return data ? data[0].id : null;
 };
 
 const updateRowWithGPTResponse = async (prevRowId: string, content: string): Promise<string | null> => {
   const payload = { type: "GPT", content };
-  await supabase.from("message_history").delete().eq("id", prevRowId);
-  const { data } = await supabase.from("message_history").insert([{ payload }]).select("id");
+  const deleteResult = await supabase.from("message_history").delete().eq("id", prevRowId);
+  if (deleteResult.error) {
+    console.error("Error deleting previous row:", deleteResult.error);
+    return null;
+  }
+  const { data, error } = await supabase.from("message_history").insert([{ payload }]).select("id");
+  if (error) {
+    console.error("Error updating row with GPT response:", error);
+    return null;
+  }
   return data ? data[0].id : null;
 };
