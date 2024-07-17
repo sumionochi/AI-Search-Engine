@@ -2,6 +2,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { ArrowCircleRight } from "@phosphor-icons/react";
 import { createClient } from "@supabase/supabase-js";
+import MessageHandler from "./MessageHandler";
+import InputArea from "./InputArea";
 
 const URL = process.env.NEXT_PUBLIC_SUPABASE_URL as string;
 const ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY as string;
@@ -44,10 +46,36 @@ const MainPage = (props: Props) => {
             });
     }, []);   
 
+    const sendMessage = (messageToSend?: string) => {
+        const message = messageToSend || inputValue;
+        const body = JSON.stringify({ message });
+        setInputValue("");
+    
+        fetch("/api/backend", {
+          method: "POST",
+          body,
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log("data", data);
+          })
+          .catch((err) => console.log("err", err));
+      };
 
-  return (
-    <div>MainPage</div>
-  )
+      return (
+        <div className="flex h-screen">
+          <div className="flex-grow h-screen flex flex-col justify-between mx-auto max-w-4xl">
+            {/* {messageHistory.map((message, index) => (
+              <MessageHandler key={index} message={message.payload} sendMessage={sendMessage} />
+            ))} */}
+            <InputArea inputValue={inputValue} setInputValue={setInputValue} sendMessage={sendMessage} />
+            <div ref={messagesEndRef} />
+          </div>
+        </div>
+      );
 }
 
 export default MainPage
