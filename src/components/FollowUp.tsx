@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Stack } from "@phosphor-icons/react";
+import { Plus, Layers } from "lucide-react";
 
 interface FollowUpProps {
   content: string;
@@ -33,20 +33,30 @@ const FollowUp: React.FC<FollowUpProps> = ({ content, sendMessage }) => {
   };
 
   return (
-    <>
+    <div className="my-4 w-full">
       {followUp.length > 0 && (
-        <div className="text-3xl font-bold my-4 w-full flex">
-          <Stack size={32} /> <span className="px-2">Follow-Up</span>
+        <div className="text-3xl font-bold flex items-center mb-4">
+          <Layers className="w-8 h-8" />
+          <span className="px-2">Follow-Up</span>
         </div>
       )}
-      {followUp.map((text, index) => (
-        <a href="#" key={index} className="text-xl w-full p-1" onClick={(e) => handleFollowUpClick(text, e)}>
-          <span>{text}</span>
-        </a>
-      ))}
+      <div className="space-y-2">
+        {followUp.map((text, index) => (
+          <div
+            key={index}
+            className="flex justify-between items-center p-4 border-4 bg-gray-800/10 rounded-md hover:bg-gray-700/20 cursor-pointer"
+          >
+            <a href="#" key={index} className="text-xl w-full p-1" onClick={(e) => handleFollowUpClick(text, e)}>
+              <span>{text}</span>
+            </a>
+            <Plus size={20} className="" />
+          </div>
+        ))}
+      </div>
       <div ref={messagesEndRef} />
-    </>
+    </div>
   );
 };
 
 export default FollowUp;
+

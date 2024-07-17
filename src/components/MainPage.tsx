@@ -1,6 +1,5 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import { ArrowCircleRight } from "@phosphor-icons/react";
 import InputArea from "./InputArea";
 import MessageHandler from "./MessageHandler";
 import { supabase } from "../lib/supa";
@@ -80,7 +79,7 @@ const MainPage: React.FC = () => {
       <div className="flex-grow overflow-auto p-4">
         {messageHistory.length === 0 ? (
           <div className="w-full h-full flex justify-center items-center">
-            <div className="text-3xl font-bold flex justify-center items-center my-4 w-full text-center">Let's search</div>
+            <div className="text-3xl font-bold flex justify-center items-center md:text-5xl my-4 w-full text-center">Let's search</div>
           </div>
         ) : (
           messageHistory.map((message, index) => (
@@ -92,7 +91,7 @@ const MainPage: React.FC = () => {
       <div className="sticky bottom-0">
         <InputArea inputValue={inputValue} setInputValue={setInputValue} sendMessage={sendMessage} />
       </div>
-      <div className="absolute bottom-8 left-8">
+      <div className="absolute top-4 left-4">
       <Themetoggle/>
       </div>
   </div>
