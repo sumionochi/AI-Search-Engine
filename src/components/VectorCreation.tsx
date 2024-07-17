@@ -13,9 +13,9 @@ const VectorCreation: React.FC<VectorCreationProps> = ({ content }) => {
   }, []);
 
   return visible ? (
-    <div className="w-full p-1">
-      <span className="flex flex-col items-center py-2 px-6 bg-white rounded shadow hover:shadow-lg transition-shadow duration-300 h-full tile-animation">
-        <span>{content}</span>
+    <div className="w-full p-1 ">
+      <span className="flex flex-col items-center py-2 px-6 border-2 rounded-md shadow hover:shadow-lg transition-shadow duration-300 h-full tile-animation">
+        <span className="font-bold">{content}</span>
       </span>
     </div>
   ) : null;
