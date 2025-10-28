@@ -6,6 +6,10 @@ Watch the video demo [here](https://www.youtube.com/watch?v=k2W3Lf6Rohk).
 
 This project is a real-time AI search engine that uses modern web technologies like Next.js, Supabase, and Tiptap Editor. The application allows users to send queries and receive AI-generated responses in real-time. It features smooth content updates, source links, and follow-up suggestions, ensuring an interactive and engaging user experience.
 
+<img width="1127" height="636" alt="image" src="https://github.com/user-attachments/assets/36f7d89c-6c0b-4b54-9c8e-d17d17b33f88" />
+
+<img width="1124" height="633" alt="image" src="https://github.com/user-attachments/assets/3c0cb26b-4cde-41ca-894e-9b4a4f111dc2" />
+
 ## Features
 
 - **Real-Time Chat**: Users can send queries and receive responses in real-time.
